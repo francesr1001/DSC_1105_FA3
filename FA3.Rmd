@@ -1,0 +1,241 @@
+---
+title: "DSC_1105_FA3"
+author: "Frances Aneth Rosales"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    css: FA3.css
+  pdf_document: default
+---
+<style>
+  body {
+    text-align: justify;
+  }
+</style>
+
+<br>
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+```
+<br><br>
+
+# Read & Show Data
+```{r}
+library(ggplot2)
+head(diamonds)
+View(diamonds)
+
+```
+<br><br><br>
+
+# PLOTTING 
+
+<br><br>
+
+Click to Hide/Show Plots
+
+<button onclick="hideoutput()" style="background: #e8ccd7;"> 
+HIDE/SHOW
+</button>
+<div id="codeinputhere" style="display:block;">
+
+
+# 1
+<b>  Create a histogram on the diamonds dataset, for example with
+
+ggplot() + geom_histogram(aes(x = carat), data = diamonds) </b>
+```{r hist}
+
+library(ggplot2)
+mainplot <- ggplot(data = diamonds, mapping = aes(x = carat))
+mainplot_bar_bin <- mainplot + layer(
+  geom = "bar",
+  stat = "bin",
+  position = "identity",
+  mapping = aes(y = ..count..)
+)+labs(caption = "Plain Bar Plot")+
+  theme(plot.caption = element_text(hjust = 0.5))  
+print(mainplot_bar_bin)
+
+
+```
+
+
+
+
+</div>
+<script>
+function hideoutput() {
+  var x = document.getElementById("codeinputhere");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+    
+    
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+
+<br><br><br>
+
+
+Click to Hide/Show Plots
+
+<button onclick="hideoutput()" style="background: #e8ccd7;"> 
+HIDE/SHOW
+</button>
+<div id="codeinputhere2" style="display:block;">
+
+
+#  2
+
+<b> Remember that a histogram is a plot with stat_bin and geom_bar. Modify your histogram code so that it uses a different geom, for example geom_line or geom_point. This should be simple once you have the layer specification of a histogram. </b>
+
+# line
+
+```{r dens}
+library(ggplot2)
+mainplot <- ggplot(data = diamonds, mapping = aes(x = carat))
+mainplot_line_bin <- mainplot + layer(
+  geom = "line",
+  stat = "bin",
+  position = "identity",
+  mapping = aes(y = ..count..))+
+  labs(caption = "Plain Line Plot")+
+  theme(plot.caption = element_text(hjust = 0.5))  
+print(mainplot_line_bin)
+```
+
+<br><br>
+
+
+<br>
+# point
+
+```{r quant}
+
+library(ggplot2)
+mainplot <- ggplot(data = diamonds, mapping = aes(x = carat))
+mainplot_point_bin <- mainplot+ layer(
+  geom = "point",
+  stat = "bin",
+  position = "identity",
+  mapping = aes(y = ..count..))+
+  labs(caption = "Plain Dot Plot")+
+  theme(plot.caption = element_text(hjust = 0.5))
+print(mainplot_point_bin)
+
+```
+
+</div>
+<script>
+function hideoutput() {
+  var x = document.getElementById("codeinputhere2");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+    
+    
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+
+<br><br>
+
+
+
+Click to Hide/Show Plots
+
+<button onclick="hideoutput()" style="background: #e8ccd7;"> 
+HIDE/SHOW
+</button>
+<div id="codeinputhere3" style="display:block;">
+
+
+
+# 3
+
+<b>In your histogram (the one plotted with bars that you created in question 1), add an aesthetic mapping from one of the factor variables (maybe color or clarity) to the fill or color aesthetic.</b>
+
+```{r coln}
+
+mainplot_clarity <- ggplot(data = diamonds, mapping = aes(x = carat, fill = clarity))
+mainplot_clarity_bar_bin <- mainplot_clarity + layer(
+  geom = "bar",
+  stat = "bin",
+  position = "identity",
+  mapping = aes(y = ..count..))+
+  labs(caption = "Bar Aesthetic Plot")+
+  theme(plot.caption = element_text(hjust = 0.5))
+print(mainplot_clarity_bar_bin)
+
+
+
+```
+
+</div>
+<script>
+function hideoutput() {
+  var x = document.getElementById("codeinputhere3");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+    
+    
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+
+
+<br><br>
+
+
+Click to Hide/Show Plots
+
+<button onclick="hideoutput()" style="background: #e8ccd7;"> 
+HIDE/SHOW
+</button>
+<div id="codeinputheres" style="display:block;">
+
+
+
+
+# 4
+
+ <b> What is the default position adjustment for a histogram? Try changing the position adjustment in the histogram you created in question 3 to something different (hint: try dodge). </b> 
+
+<br>
+
+
+```{r figone}
+library(ggplot2)
+mainplot_clarity <- ggplot(data = diamonds, mapping = aes(x = carat, fill = clarity))
+mainplot_clarity_bar_bin_dodge <- mainplot_clarity + layer(
+  geom = "bar",
+  stat = "bin",
+  position = "dodge",  
+  mapping = aes(y = ..count..))+
+  labs(caption = "Doge Bar Plot")+
+  theme(plot.caption = element_text(hjust = 0.5))
+print(mainplot_clarity_bar_bin_dodge)
+
+```
+
+</div>
+<script>
+function hideoutput() {
+  var x = document.getElementById("codeinputheres");
+  if (x.style.display === "block") {
+    x.style.display = "none";
+    
+    
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
